@@ -37,10 +37,10 @@ export default function SignUp() {
 
       router.push("/"); // Redirect to home page
     } else {
-      const resultError = await result.json();
-      console.error(resultError);
+      const resultErrorText = await result.text();
+      console.log(resultErrorText);
 
-      alert("Failed to create account: " + resultError.message);
+      alert("Failed to create account: " + resultErrorText);
     }
   }
 
