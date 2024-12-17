@@ -1,12 +1,16 @@
 "use client";
 import { CustomUser } from "@/app/_type/ICustomUser";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [customUser, setCustomUser] = useState<CustomUser>({
     username: "",
     password: "",
   });
+
+  // Initialize the next.js router
+  const router = useRouter();
 
   async function handleOnSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -16,7 +20,7 @@ export default function SignUp() {
       password: customUser.password,
     };
 
-    // POST
+    // POST request
     const result = await fetch("http://localhost:8080/api/v1/user", {
       method: "POST",
       headers: {
@@ -28,9 +32,15 @@ export default function SignUp() {
     if (result.ok) {
       const data = await result.text();
       console.log(data);
+
+      alert("Account created successfully!");
+
+      router.push("/"); // Redirect to home page
     } else {
       const resultError = await result.json();
       console.error(resultError);
+
+      alert("Failed to create account: " + resultError.message);
     }
   }
 
