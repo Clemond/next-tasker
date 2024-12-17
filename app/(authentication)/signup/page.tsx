@@ -57,7 +57,7 @@ export default function SignUp() {
       style={{ backgroundImage: "url('/todo-background.jpg')" }}
     >
       <div className="h-screen flex flex-col items-center justify-center">
-        <p className="p-4 text-xl font-bold">Sign up!</p>
+        <p className="p-4 text-xl font-bold">Create account</p>
         <form
           onSubmit={handleOnSubmit}
           method="post"
